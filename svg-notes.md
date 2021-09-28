@@ -4,20 +4,6 @@
 
 [link](https://codyloyd.notion.site/How-I-write-lessons-210ea94af06e441a9df1ec08a8a15112)
 
-- Gather resources
-- Consume resources
-- While consuming, think about structure & presentation, start outlining
-- Develop outline, possibly splitting up if necessary
-  - (note: I don't think multiple SVG lessons is desirable, lol)
-- Main goal: Present info in most PRACTICAL way.
-- BEGIN WRITING. Outline should be sufficiently developed for this to be straightforward
-- Keep in mind ESL ppl & ppl from different backgrounds
-- Casual tone, technical terms
-- "Assignment" section: optional
-- Learning Outcomes & Knowledge Check should be last thing
-  - LO: brief overview of what they're about to learn. 1-3 per lesson (if more the lesson might be too complex!)
-  - KC: Specific questions to test knowledge
-
 ### GH Issue overview
 
 [link](https://github.com/TheOdinProject/top-meta/issues/43)
