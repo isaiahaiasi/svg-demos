@@ -1,0 +1,14 @@
+.container {
+  display:flex;
+  flex-direction:row;
+  height:100px;
+}
+
+.container .container-section {
+  flex: 1;
+}
+
+.svg-container {
+  display: flex;
+  justify-content: center;
+}
