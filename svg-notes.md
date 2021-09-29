@@ -14,7 +14,102 @@
 - Basic usage (eg, inline vs imported)
 - Sources for SVG icons/images
 
-### Vague Outline?
+## Outline
+
+### Introduction
+
+Introduce the topic, their wide-use, and the general scope of the lesson
+
+### Learning Outcomes
+
+- What SVGs, Vector Graphics, and XML are
+- How to create simple SVGs and add them to your websites
+- How to modify them dynamically
+- When to use them, and when to use other image formats
+- ???
+
+### What are SVGs and why should I care? (The Basics)
+
+- Definition of "Vector"
+- Definition of "XML"
+
+Benefits:
+- Filesize is based on complexity, not how many pixels on the screen it takes up
+- "Scalable" means that it will look just as good at any size you want
+- You can easily generate or modify them dynamically
+
+Use-cases:
+- Icons
+- Patterned backgrounds
+- Graphs/Charts
+- Very large, simple images
+- Dynamically generated images
+- Fancy effects achieved by svg-filters
+
+### Anatomy of an SVG
+
+Time to get our hands dirty! Try playing around a little with the example below:
+
+`<CODEPEN> simple example showing some basic shapes and attributes, as well as css classes that define additional styling </CODEPEN>`
+
+So, what's going on here? Here's a breakdown:
+
+- `<svg>` This is your main component--everything else goes inside here
+  - `xmlns` (aka "XML NameSpace"): lets the browser know what version of the language you're using
+  - `viewBox`: defines the dimensions of your SVG's "canvas" 
+  - ...
+- `<circle>`: One of the basic shapes SVGs give you. The others are: ellipse, rect, line, polyline, polygon, and path
+- ...
+
+### Embedding SVGs
+
+Common methods:
+- img tag: this works just like any other <img>. It's convenient, but limited in functionality.
+- css: `background-image: url(./my-svg.svg)` same limitations as `<img>`
+- inline: embedding the entire contents of your svg in your html. This unlocks its full potential, but can make your html harder to read, isn't very convenient, makes your page less cacheable, and might delay the rest of your html from loading
+- object tag: best of both worlds! (TODO: is it?)
+
+### Programmatic SVGs
+
+Say you want to use an SVG to display a graph of how many people use Node.js compared to Ruby on Rails. It probably wouldn't make sense to make a graph like this in a vector-drawing tool like Adobe Illustrator. Instead, you would probably want to create the image entirely through code, based on what your data looks like.
+
+Luckily, SVGs are just XML elements. And much like you can create HTML elements using `createElement`, the browser provides a method for creating XML elements: `createElementNS`!
+
+(aside): In the real world, you would likely use a library to make this more convenient. However, understanding the underlying API will make you much more confident in what's going on "under the hood", and mean you aren't reliant on any particular library.
+
+Let's start by creating a circle!
+
+First, we need to create our SVG element. Notice how the only different between `createElement` and `createElementNS` is that we need to add the SVG namespace.
+
+~~~javascript
+const xmlns = "http://www.w3.org/2000/svg";
+const svg = document.createElementNS(xmlns, "svg");
+~~~
+
+Next, we add the viewBox attribute to our SVG. Notice how we use the "NS" version of this method as well, but rather than giving it a namespace, we just give it `null`. 
+
+TODO: why is that?
+
+~~~javascript
+svg.setAttributeNS(null, "viewBox", "0 0 100 100");
+~~~
+
+Then we create our circle in the same way, append it to our svg, and append the svg to the target element in our document!
+
+~~~javascript
+const circle = document.createElementNS(xmlns, circle);
+circle.setAttributeNS(null, "cx", 50);
+circle.setAttributeNS(null, "cy", 50);
+circle.setAttributeNS(null, "r", 30);
+
+// notice this is just like working with HTML!
+svg.appendChild(circle);
+document.querySelector("#svg-container").appendChild(svg);
+~~~
+
+
+
+## Talking Points
 - What are they?
   - small EXAMPLES of both graphic & XML representation
   - (I CAN embed codepens, so maybe present a few simple SVGs and prompt readers to just play around with the raw SVG to get an idea for how different properties and values effect them)
