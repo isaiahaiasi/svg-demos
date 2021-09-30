@@ -1,7 +1,12 @@
+body {
+  background: #303048;
+  color: white;
+}
+
 .container {
   display:flex;
   flex-direction:row;
-  height:100px;
+  height:300px;
 }
 
 .container .container-section {

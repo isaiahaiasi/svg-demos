@@ -21,4 +21,12 @@ function setAttr(element, attributes) {
   });
 }
 
-export { create, setAttr };
+function getAttr(element, attributes) {
+  if (typeof attributes === "string") {
+    return element.getAttributeNS(null, attributes);
+  }
+
+  return attributes.map((attribute) => element.getAttributeNS(null, attribute));
+}
+
+export { create, setAttr, getAttr };

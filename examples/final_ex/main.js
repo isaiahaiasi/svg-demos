@@ -1,13 +1,16 @@
 import * as mnsvg from "./mnsvg.js";
+import { drawGraph } from "./graph.js";
+import SOData from "./data.js";
 
 const svgContainer = document.querySelector("#svg-container");
 
-const svgAttr = { "viewBox": "0 0 100 100", fill: "grey", stroke: "#000" };
-const svg = mnsvg.create("svg", svgAttr);
+const svg = mnsvg.create("svg", {
+  "viewBox": "0 0 100 100",
+  fill: "orangered",
+  stroke: "#FFF",
+  "stroke-width": 2,
+});
 
-const circleAttr = { cx: 50, cy: 50, r: 40, "stroke-width": 4 };
-const circle = mnsvg.create("circle", circleAttr);
+drawGraph(svg, SOData);
 
-svg.appendChild(circle);
 svgContainer.appendChild(svg);
-
