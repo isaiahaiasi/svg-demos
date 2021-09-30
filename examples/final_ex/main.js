@@ -6,8 +6,6 @@ const svgContainer = document.querySelector("#svg-container");
 
 const svg = mnsvg.create("svg", {
   "viewBox": "0 0 100 100",
-  fill: "orangered",
-  stroke: "#FFF",
   "stroke-width": 2,
 });
 

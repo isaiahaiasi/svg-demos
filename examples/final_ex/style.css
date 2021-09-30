@@ -17,3 +17,20 @@ body {
   display: flex;
   justify-content: center;
 }
+
+svg {
+  transform-box: fill-box;
+}
+
+.graph-axis {
+  stroke: white;
+}
+
+.graph-bar {
+  fill: orangered;
+  transition: .2s ease-in-out;
+}
+
+.graph-bar:hover {
+  fill: orange;
+}
