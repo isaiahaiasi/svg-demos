@@ -4,9 +4,10 @@ body {
 }
 
 .container {
+  max-width: 400px;
+  margin: auto;
   display:flex;
-  flex-direction:row;
-  height:300px;
+  flex-direction:column;
 }
 
 .container .container-section {
@@ -20,6 +21,7 @@ body {
 
 svg {
   transform-box: fill-box;
+  transform: rotate(180deg);
 }
 
 .graph-axis {
@@ -28,9 +30,18 @@ svg {
 
 .graph-bar {
   fill: orangered;
-  transition: .2s ease-in-out;
+  transition: fill .3s ease-in-out;
+  animation: rise-up .8s cubic-bezier(0.6, 0.11, 0.45, 1.35) .5s;
 }
 
 .graph-bar:hover {
   fill: orange;
+}
+
+@keyframes rise-up {
+  from {
+    transform: scale3d(1, 0, 1);
+  } to {
+    transform: scale3d(1, 1, 1);
+  }
 }

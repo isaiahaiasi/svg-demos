@@ -8,8 +8,8 @@ export function drawGraph(svg, data) {
 function drawAxes(svg) {
   const { x1, y1, x2, y2 } = getViewBox(svg);
 
-  const xAxis = mnsvg.create("line", { x1, y1: y2, x2, y2, class: "graph-axis" });
-  const yAxis = mnsvg.create("line", { x1, y1, x2: x1, y2, class: "graph-axis" });
+  const xAxis = mnsvg.create("line", { x1, y1, x2, y2: y1, class: "graph-axis" });
+  const yAxis = mnsvg.create("line", { x1: x2, y1, x2, y2, class: "graph-axis" });
 
   // TODO: label axes
 
@@ -21,7 +21,6 @@ function drawBars(svg, data) {
   // distance between the start of each bar
   const step = getBarStep(data, svg);
 
-  // scaling factor so highest val == highest point on chart
   const barLengthScaleFactor = getScalingFactor(data, svg);
   const { y2: maxHeight} = getViewBox(svg);
   
@@ -38,14 +37,14 @@ function drawBars(svg, data) {
   svg.appendChild(g);
 }
 
-function getBar(dataPoint, { i, step, maxHeight, barLengthScaleFactor }) {
+function getBar(dataPoint, { i, step, barLengthScaleFactor }) {
   const barLength = dataPoint.usage * barLengthScaleFactor;
   return mnsvg.create("rect", {
     x: i * step + step / 3,
-    y: maxHeight - barLength,
-    rx: 1,
+    y: 0,
     width: step * 2 / 3,
-    height: maxHeight - (maxHeight - barLength),
+    height: barLength,
+    rx: 1,
     "stroke-width": 0,
     class: "graph-bar",
     "data-origin": i * step + step / 2,
