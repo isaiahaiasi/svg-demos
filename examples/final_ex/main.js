@@ -5,7 +5,7 @@ import SOData from "./data.js";
 const svgContainer = document.querySelector("#svg-container");
 
 const svg = mnsvg.create("svg", {
-  "viewBox": "0 0 100 100",
+  "viewBox": "0 0 100 50",
   "stroke-width": 2,
   class: "svg-graph",
 });
