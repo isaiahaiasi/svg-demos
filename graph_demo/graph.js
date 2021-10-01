@@ -1,8 +1,14 @@
 import * as mnsvg from "./mnsvg.js";
 
 export function drawGraph(svg, data, options = {
-  padding: { left: 3, right: 3, top: 0, bottom: 3 }
+  xAxisName,
+  yAxisName,
+  padding,
 }) {
+  // set default padding if necessary
+  options.padding ??= { left: 3, right: 3, top: 0, bottom: 3 };
+  const { padding, xAxisName, yAxisName } = options;
+
   const viewBox = getViewBox();
   // distance between the start of each bar
   const barStep = getBarStep();
@@ -22,7 +28,7 @@ export function drawGraph(svg, data, options = {
   function drawBars() {
     const g = mnsvg.create("g", { class: "bar-group" });
 
-    data.sort((a, b) => a.usage - b.usage ).forEach((dataPoint, i) => {
+    data.sort((a, b) => a[yAxisName] - b[yAxisName] ).forEach((dataPoint, i) => {
       // TODO: add label
       const bar = getBar(dataPoint, i);
       g.appendChild(bar);
@@ -32,11 +38,11 @@ export function drawGraph(svg, data, options = {
   }
 
   function getBar(dataPoint, i) {
-    const barLength = dataPoint.usage * barLengthScaleFactor;
+    const barLength = dataPoint[yAxisName] * barLengthScaleFactor;
     // TODO: these x calculations can definitely be simplified
     // (get origin first & just calc distances from that)
     return mnsvg.create("rect", {
-      x: i * barStep + barStep / 6 + options.padding.left,
+      x: i * barStep + barStep / 6 + padding.left,
       y: 0,
       width: barStep * 2 / 3,
       height: barLength,
@@ -53,15 +59,15 @@ export function drawGraph(svg, data, options = {
   }
 
   function getBarStep() {
-    const { left, right } = options.padding;
+    const { left, right } = padding;
     const range = viewBox.x2 - viewBox.x1 - left - right;
     return range / data.length;
   }
 
   function getScalingFactor() {
-    const { top, bottom } = options.padding;
+    const { top, bottom } = padding;
     const verticalRange = viewBox.y2 - viewBox.y1 - top - bottom;
-    const maxVal = Math.max(...data.map(dp => dp.usage));
+    const maxVal = Math.max(...data.map(dp => dp[yAxisName]));
     return verticalRange / maxVal;
   }
 

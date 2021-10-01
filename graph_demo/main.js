@@ -10,6 +10,6 @@ const svg = mnsvg.create("svg", {
   class: "svg-graph",
 });
 
-drawGraph(svg, SOData);
+drawGraph(svg, SOData, { xAxisName: "language", yAxisName: "usage" });
 
 svgContainer.appendChild(svg);
